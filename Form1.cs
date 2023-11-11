@@ -5,9 +5,11 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
@@ -20,92 +22,142 @@ namespace MetodosOrdenamiento
             InitializeComponent();
         }
 
-        public int[] numeros;
+        public List<int> numeros;
         public int aux;
         public string cargando = "";
         int iteraciones = 0;
-        private void MergeSort(List<int> arr)
-        {
-            //if (arr.Count <= 1)
-            //{
-            //    return;
-            //}
-            //var mitad = Math.Round(arr.Count / 2);
-
-        }
-        private void Merge()
-        {
-            int izq = (numeros.Length) / 2;
-            int der = (numeros.Length) - izq;
-            var izqArray = new int[izq];
-            var derArray = new int[der];
-
-            Array.Copy(numeros, 0, izqArray, 0, izqArray.Length); // se le asigna valores de el array numeros 
-            Array.Copy(numeros, izqArray.Length, derArray, 0, derArray.Length);
-
-            int i = 0;
-            int j = 0;
-            int a = 0;
-
-            Stopwatch time = new Stopwatch();
-            time.Start();
-
-            while (i < izq && j < der)
-            {
-                iteraciones++;
-                if (i < izq && (j >= der || izqArray[i] <= derArray[j]))
-                {
-                    numeros[a++] = izqArray[i++];
-                }
-                else if (j < der)
-                {
-                    numeros[a++] = derArray[j++];
-                }
-            }
-
-            time.Stop();
-            dgvMetodos.Rows.Add("Merge Sort", iteraciones, time.Elapsed.TotalMilliseconds, txtVector.Text);
-            txtIteraciones.Text = iteraciones.ToString();
-            txtTiempo.Text = time.Elapsed.TotalMilliseconds.ToString();
-            iteraciones = 0;
-        }
 
         private void Form1_Load(object sender, EventArgs e)
         {
 
         }
 
+        private void Quick(List<int> arr, int izq, int der, out int iteraciones, out double tiempo)
+        {
+            iteraciones = 0;
+            Stopwatch time = new Stopwatch();
+            time.Start();
+
+            QuickSort(arr, izq, der, ref iteraciones);
+
+            time.Stop();
+            tiempo = time.Elapsed.TotalMilliseconds;
+        }
+
+        private int QuickSort(List<int> arr, int izq, int der, ref int iteraciones)
+        {
+            int pivot = arr[der];
+            int i = (izq - 1);
+
+            for (int a = izq; a < der; a++)
+            {
+                iteraciones++;
+                if (arr[a] < pivot)
+                {
+                    i++;
+                    // Intercambiar arr[i] y arr[a]
+                    int aux = arr[i];
+                    arr[i] = arr[a];
+                    arr[a] = aux;
+                }
+            }
+
+            // Intercambiar arr[i + 1] y arr[der], colocando el pivot en la posición correcta
+            int auxPivot = arr[i + 1];
+            arr[i + 1] = arr[der];
+            arr[der] = auxPivot;
+
+            return i + 1;
+        }
+
+        private void Mergesort(List<int> arr, out int iteraciones, out double tiempo)
+        {
+            iteraciones = 0;
+            Stopwatch time = new Stopwatch();
+            time.Start();
+
+            MergeSort(arr, ref iteraciones);
+
+            time.Stop();
+            tiempo = time.Elapsed.TotalMilliseconds;
+
+        }
+        private void MergeSort(List<int> arr, ref int iteraciones)
+        {
+            if (arr.Count <= 1)
+            {
+                return;
+            }
+
+            int mitad = arr.Count / 2;
+
+            List<int> izq = arr.GetRange(0, mitad);
+            List<int> der = arr.GetRange(mitad, arr.Count - mitad);
+
+            // Llamadas recursivas para ordenar las dos mitades
+            MergeSort(izq, ref iteraciones);
+            MergeSort(der, ref iteraciones);
+
+            // Combinar las dos mitades ordenadas
+            Merge(arr, izq, der, ref iteraciones);
+
+        }
+        private void Merge(List<int> arr, List<int> izq, List<int> der, ref int iteraciones)
+        {
+            int i = 0; //para recorrer izq
+            int a = 0; // para recorrer der
+            int e = 0; //para recorrer arr
+
+            while (i < izq.Count && a < der.Count)
+            {
+                iteraciones++;
+                if (izq[i] <= der[a])
+                {
+                    arr[e++] = izq[i++];
+                }
+                else
+                {
+                    arr[e++] = der[a++];
+                }
+            }
+
+        }
+
+
         private void btnGenerar_Click(object sender, EventArgs e)
         {
             if (txtVector.Text != "")
             {
                 int l = Convert.ToInt32(txtVector.Text);
-                numeros = new int[l];
+                numeros = new List<int>(l);
                 Random random = new Random();
-                for (int i = 0; i < numeros.Length; i++)
+                for (int i = 0; i < l; i++)
                 {
-                    numeros[i] = random.Next(0, 100);
+                    numeros.Add(random.Next(0, 100));
 
                 }
-                MessageBox.Show("Vector Creado");
+                MessageBox.Show("Vector Creado","Informacion");
+                GraficoDesordenado(grDesordenado, numeros);
             }
             else
             {
-                MessageBox.Show("Ingresar un numero de elementos");
+                MessageBox.Show("Ingresar un numero de elementos", "Error");
             }
         }
 
         private void btnOrdenar_Click(object sender, EventArgs e)
         {
             int iteraciones = 0;
+
             if (optBubble.Checked == true)
-            {
+            { 
+
                 Stopwatch time = new Stopwatch();
                 time.Start();
-                for (int i = 0; i < numeros.Length; i++)
+                for (int i = 0; i < numeros.Count; i++)
                 {
                     iteraciones++;
-                    for (int J = 0; J < numeros.Length - 1 - i; J++)
+                    for (int J = 0; J < numeros.Count - 1 - i; J++)
                     {
                         if (numeros[J] > numeros[J + 1])
                         {
@@ -122,17 +174,59 @@ namespace MetodosOrdenamiento
                 txtIteraciones.Text = iteraciones.ToString();
                 txtTiempo.Text = time.Elapsed.TotalMilliseconds.ToString();
                 iteraciones = 0;
+
             }
 
             if (optQuick.Checked == true)
             {
+
+                iteraciones = 0;
+                double tiempo = 0;
+
+                Quick(numeros, 0, numeros.Count - 1, out iteraciones, out tiempo);
+
+                dgvMetodos.Rows.Add("Quick Sort", iteraciones, tiempo, txtVector.Text);
+                txtIteraciones.Text = iteraciones.ToString();
+                txtTiempo.Text = tiempo.ToString();
 
             }
 
             if (optMerge.Checked == true)
             {
 
+                iteraciones = 0;
+                double tiempo = 0;
+                Mergesort(numeros, out iteraciones, out tiempo);
+               
+                txtIteraciones.Text = iteraciones.ToString();
+                txtTiempo.Text = tiempo.ToString();
+                dgvMetodos.Rows.Add("Merge Sort", iteraciones, tiempo, txtVector.Text);
 
+            }
+            GraficoOrdenado(grOrdenado, numeros);
+        }
+
+        private void GraficoDesordenado(Chart chart, List<int> data)
+        {
+            grDesordenado.Series.Clear();
+            grDesordenado.Series.Add("Desordenado");
+            grDesordenado.Series["Desordenado"].ChartType = SeriesChartType.Column;
+
+            for (int i = 0; i < data.Count; i++)
+            {
+                chart.Series["Desordenado"].Points.AddXY(i, data[i]);
+            }
+        }
+
+        private void GraficoOrdenado(Chart chart, List<int> data)
+        {
+            grOrdenado.Series.Clear();
+            grOrdenado.Series.Add("Ordenado");
+            grOrdenado.Series["Ordenado"].ChartType = SeriesChartType.Column;
+
+            for (int i = 0; i < data.Count; i++)
+            {
+                chart.Series["Ordenado"].Points.AddXY(i, data[i]);
             }
         }
     }
