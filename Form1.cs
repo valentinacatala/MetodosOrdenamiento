@@ -32,54 +32,50 @@ namespace MetodosOrdenamiento
 
         }
 
-        private void Quicksort(List<int> arr, int izq, int der, out int iteraciones, out double tiempo)
+        private void Quick(List<int> arr, int left, int right, out int iteraciones, out double tiempo)
         {
             iteraciones = 0;
             Stopwatch time = new Stopwatch();
             time.Start();
 
-            QuickSort(arr, izq, der, ref iteraciones);
+            List<int> sortedArr = Quicksort(arr, ref iteraciones);
 
             time.Stop();
             tiempo = time.Elapsed.TotalMilliseconds;
         }
-        private int Quick(List<int> arr, int izq, int der, ref int iteraciones)
+
+        private List<int> Quicksort(List<int>arr, ref int iteraciones)
         {
-            if (izq<der)
-            {
-                int pivot = QuickSort(arr, izq, der, ref iteraciones);
+             if (arr.Count <= 1)
+             {
+                    return arr;
+             }
 
-                Quick(arr, izq, pivot - 1, ref iteraciones);
-                Quick(arr, pivot + 1, der, ref iteraciones);
-            }
-            return izq;
-        }
+             int pivot = arr[0];
+             List<int> left = new List<int>();
+             List<int> right = new List<int>();
 
-        private int QuickSort(List<int> arr, int izq, int der, ref int iteraciones)
-        {
-            int pivot = arr[der];
-            int i = (izq - 1);
-
-            for (int a = izq; a < der; a++)
-            {
+             for (int i = 0; i < arr.Count; i++)
+             {
+                    if (arr[i] < pivot)
+                    {
+                        left.Add(arr[i]);
+                    }
+                    else if (arr[i] > pivot)
+                    {
+                        right.Add(arr[i]);
+                    }
                 iteraciones++;
-                if (arr[a] < pivot)
-                {
-                    i++;
-                    // Intercambiar arr[i] y arr[a]
-                    int aux = arr[i];
-                    arr[i] = arr[a];
-                    arr[a] = aux;
-                }
-            }
+             }
 
-            // Intercambiar arr[i + 1] y arr[der], colocando el pivot en la posición correcta
-            int auxPivot = arr[i + 1];
-            arr[i + 1] = arr[der];
-            arr[der] = auxPivot;
+             List<int> sortedArr = new List<int>();
+             sortedArr.AddRange(Quicksort(left, ref iteraciones));
+             sortedArr.Add(pivot);
+             sortedArr.AddRange(Quicksort(right, ref iteraciones));
 
-            return i + 1;
+            return sortedArr;
         }
+        
 
         private void Mergesort(List<int> arr, out int iteraciones, out double tiempo)
         {
@@ -208,12 +204,12 @@ namespace MetodosOrdenamiento
                 iteraciones = 0;
                 double tiempo = 0;
 
-                Quicksort(numeros, 0, numeros.Count - 1, out iteraciones, out tiempo);
+                Quick(numeros, 0, numeros.Count - 1, out iteraciones, out tiempo);
 
                 dgvMetodos.Rows.Add("Quick Sort", iteraciones, tiempo, txtVector.Text);
                 txtIteraciones.Text = iteraciones.ToString();
                 txtTiempo.Text = tiempo.ToString();
-
+                GraficoOrdenado(grOrdenado, numeros);
             }
 
             if (optMerge.Checked == true)
@@ -228,6 +224,7 @@ namespace MetodosOrdenamiento
                 dgvMetodos.Rows.Add("Merge Sort", iteraciones, tiempo, txtVector.Text);
                 
             }
+
             GraficoOrdenado(grOrdenado, numeros);
         }
 
