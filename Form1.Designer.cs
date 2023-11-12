@@ -360,6 +360,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1623, 597);
             this.Controls.Add(this.grOrdenado);
             this.Controls.Add(this.grDesordenado);

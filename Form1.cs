@@ -32,7 +32,7 @@ namespace MetodosOrdenamiento
 
         }
 
-        private void Quick(List<int> arr, int izq, int der, out int iteraciones, out double tiempo)
+        private void Quicksort(List<int> arr, int izq, int der, out int iteraciones, out double tiempo)
         {
             iteraciones = 0;
             Stopwatch time = new Stopwatch();
@@ -42,6 +42,17 @@ namespace MetodosOrdenamiento
 
             time.Stop();
             tiempo = time.Elapsed.TotalMilliseconds;
+        }
+        private int Quick(List<int> arr, int izq, int der, ref int iteraciones)
+        {
+            if (izq<der)
+            {
+                int pivot = QuickSort(arr, izq, der, ref iteraciones);
+
+                Quick(arr, izq, pivot - 1, ref iteraciones);
+                Quick(arr, pivot + 1, der, ref iteraciones);
+            }
+            return izq;
         }
 
         private int QuickSort(List<int> arr, int izq, int der, ref int iteraciones)
@@ -104,6 +115,7 @@ namespace MetodosOrdenamiento
         }
         private void Merge(List<int> arr, List<int> izq, List<int> der, ref int iteraciones)
         {
+            
             int i = 0; //para recorrer izq
             int a = 0; // para recorrer der
             int e = 0; //para recorrer arr
@@ -119,6 +131,19 @@ namespace MetodosOrdenamiento
                 {
                     arr[e++] = der[a++];
                 }
+            }
+
+            //ordena los elementos que quedaron sueltos sin ordenar
+            while (i < izq.Count)
+            {
+                iteraciones++;
+                arr[e++] = izq[i++];
+            }
+
+            while (a < der.Count)
+            {
+                iteraciones++;
+                arr[e++] = der[a++];
             }
 
         }
@@ -174,7 +199,7 @@ namespace MetodosOrdenamiento
                 txtIteraciones.Text = iteraciones.ToString();
                 txtTiempo.Text = time.Elapsed.TotalMilliseconds.ToString();
                 iteraciones = 0;
-
+                
             }
 
             if (optQuick.Checked == true)
@@ -183,7 +208,7 @@ namespace MetodosOrdenamiento
                 iteraciones = 0;
                 double tiempo = 0;
 
-                Quick(numeros, 0, numeros.Count - 1, out iteraciones, out tiempo);
+                Quicksort(numeros, 0, numeros.Count - 1, out iteraciones, out tiempo);
 
                 dgvMetodos.Rows.Add("Quick Sort", iteraciones, tiempo, txtVector.Text);
                 txtIteraciones.Text = iteraciones.ToString();
@@ -201,10 +226,11 @@ namespace MetodosOrdenamiento
                 txtIteraciones.Text = iteraciones.ToString();
                 txtTiempo.Text = tiempo.ToString();
                 dgvMetodos.Rows.Add("Merge Sort", iteraciones, tiempo, txtVector.Text);
-
+                
             }
             GraficoOrdenado(grOrdenado, numeros);
         }
+
 
         private void GraficoDesordenado(Chart chart, List<int> data)
         {
