@@ -30,6 +30,8 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
@@ -55,16 +57,23 @@
             this.optBubble = new System.Windows.Forms.RadioButton();
             this.gbElementos = new System.Windows.Forms.GroupBox();
             this.btnGenerar = new System.Windows.Forms.Button();
-            this.txtVector = new System.Windows.Forms.TextBox();
             this.lblLongitud = new System.Windows.Forms.Label();
             this.grDesordenado = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.grOrdenado = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblGraficos = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnLimpiarGraficos = new System.Windows.Forms.Button();
+            this.btnLimpiarGrilla = new System.Windows.Forms.Button();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMetodos)).BeginInit();
             this.gbResultados.SuspendLayout();
             this.gbMetodo.SuspendLayout();
             this.gbElementos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grDesordenado)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grOrdenado)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // lblGraficoOrdenado
@@ -72,7 +81,7 @@
             this.lblGraficoOrdenado.AutoSize = true;
             this.lblGraficoOrdenado.Font = new System.Drawing.Font("Franklin Gothic Medium", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGraficoOrdenado.ForeColor = System.Drawing.Color.SteelBlue;
-            this.lblGraficoOrdenado.Location = new System.Drawing.Point(1081, 307);
+            this.lblGraficoOrdenado.Location = new System.Drawing.Point(1037, 317);
             this.lblGraficoOrdenado.Name = "lblGraficoOrdenado";
             this.lblGraficoOrdenado.Size = new System.Drawing.Size(170, 20);
             this.lblGraficoOrdenado.TabIndex = 21;
@@ -83,7 +92,7 @@
             this.lblGraficoDesordenado.AutoSize = true;
             this.lblGraficoDesordenado.Font = new System.Drawing.Font("Franklin Gothic Medium", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGraficoDesordenado.ForeColor = System.Drawing.Color.SteelBlue;
-            this.lblGraficoDesordenado.Location = new System.Drawing.Point(1081, 22);
+            this.lblGraficoDesordenado.Location = new System.Drawing.Point(1037, 27);
             this.lblGraficoDesordenado.Name = "lblGraficoDesordenado";
             this.lblGraficoDesordenado.Size = new System.Drawing.Size(196, 20);
             this.lblGraficoDesordenado.TabIndex = 20;
@@ -93,35 +102,47 @@
             // 
             this.dgvMetodos.AllowUserToAddRows = false;
             this.dgvMetodos.AllowUserToDeleteRows = false;
-            this.dgvMetodos.BackgroundColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvMetodos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvMetodos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvMetodos.BackgroundColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvMetodos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvMetodos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvMetodos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Nombre,
             this.Iteraciones1,
             this.Tiempo,
             this.Elementos});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvMetodos.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvMetodos.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvMetodos.Location = new System.Drawing.Point(395, 22);
             this.dgvMetodos.Name = "dgvMetodos";
             this.dgvMetodos.ReadOnly = true;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvMetodos.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvMetodos.RowHeadersWidth = 51;
             this.dgvMetodos.RowTemplate.Height = 24;
-            this.dgvMetodos.Size = new System.Drawing.Size(611, 542);
+            this.dgvMetodos.Size = new System.Drawing.Size(611, 568);
             this.dgvMetodos.TabIndex = 19;
             // 
             // Nombre
@@ -164,9 +185,9 @@
             this.gbResultados.Controls.Add(this.txtTiempo);
             this.gbResultados.Font = new System.Drawing.Font("Franklin Gothic Medium", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbResultados.ForeColor = System.Drawing.Color.SteelBlue;
-            this.gbResultados.Location = new System.Drawing.Point(20, 410);
+            this.gbResultados.Location = new System.Drawing.Point(19, 329);
             this.gbResultados.Name = "gbResultados";
-            this.gbResultados.Size = new System.Drawing.Size(346, 121);
+            this.gbResultados.Size = new System.Drawing.Size(346, 133);
             this.gbResultados.TabIndex = 18;
             this.gbResultados.TabStop = false;
             this.gbResultados.Text = "Resultados";
@@ -174,22 +195,22 @@
             // lblTiempo
             // 
             this.lblTiempo.AutoSize = true;
-            this.lblTiempo.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTiempo.Font = new System.Drawing.Font("Franklin Gothic Medium", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTiempo.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblTiempo.Location = new System.Drawing.Point(18, 47);
+            this.lblTiempo.Location = new System.Drawing.Point(19, 44);
             this.lblTiempo.Name = "lblTiempo";
-            this.lblTiempo.Size = new System.Drawing.Size(49, 17);
+            this.lblTiempo.Size = new System.Drawing.Size(56, 20);
             this.lblTiempo.TabIndex = 8;
             this.lblTiempo.Text = "Tiempo";
             // 
             // lblIteraciones
             // 
             this.lblIteraciones.AutoSize = true;
-            this.lblIteraciones.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblIteraciones.Font = new System.Drawing.Font("Franklin Gothic Medium", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblIteraciones.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblIteraciones.Location = new System.Drawing.Point(179, 45);
+            this.lblIteraciones.Location = new System.Drawing.Point(183, 43);
             this.lblIteraciones.Name = "lblIteraciones";
-            this.lblIteraciones.Size = new System.Drawing.Size(69, 17);
+            this.lblIteraciones.Size = new System.Drawing.Size(81, 20);
             this.lblIteraciones.TabIndex = 9;
             this.lblIteraciones.Text = "Iteraciones";
             // 
@@ -219,7 +240,7 @@
             this.gbMetodo.Controls.Add(this.optBubble);
             this.gbMetodo.Font = new System.Drawing.Font("Franklin Gothic Medium", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbMetodo.ForeColor = System.Drawing.Color.SteelBlue;
-            this.gbMetodo.Location = new System.Drawing.Point(20, 223);
+            this.gbMetodo.Location = new System.Drawing.Point(19, 165);
             this.gbMetodo.Name = "gbMetodo";
             this.gbMetodo.Size = new System.Drawing.Size(346, 152);
             this.gbMetodo.TabIndex = 17;
@@ -231,7 +252,7 @@
             this.btnOrdenar.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.btnOrdenar.Font = new System.Drawing.Font("Franklin Gothic Medium", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOrdenar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnOrdenar.Location = new System.Drawing.Point(224, 55);
+            this.btnOrdenar.Location = new System.Drawing.Point(224, 63);
             this.btnOrdenar.Name = "btnOrdenar";
             this.btnOrdenar.Size = new System.Drawing.Size(84, 33);
             this.btnOrdenar.TabIndex = 16;
@@ -242,11 +263,11 @@
             // optMerge
             // 
             this.optMerge.AutoSize = true;
-            this.optMerge.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.optMerge.Font = new System.Drawing.Font("Franklin Gothic Medium", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.optMerge.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.optMerge.Location = new System.Drawing.Point(30, 93);
+            this.optMerge.Location = new System.Drawing.Point(27, 93);
             this.optMerge.Name = "optMerge";
-            this.optMerge.Size = new System.Drawing.Size(89, 21);
+            this.optMerge.Size = new System.Drawing.Size(102, 24);
             this.optMerge.TabIndex = 10;
             this.optMerge.TabStop = true;
             this.optMerge.Text = "Merge Sort";
@@ -255,11 +276,11 @@
             // optQuick
             // 
             this.optQuick.AutoSize = true;
-            this.optQuick.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.optQuick.Font = new System.Drawing.Font("Franklin Gothic Medium", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.optQuick.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.optQuick.Location = new System.Drawing.Point(30, 67);
+            this.optQuick.Location = new System.Drawing.Point(27, 67);
             this.optQuick.Name = "optQuick";
-            this.optQuick.Size = new System.Drawing.Size(85, 21);
+            this.optQuick.Size = new System.Drawing.Size(98, 24);
             this.optQuick.TabIndex = 9;
             this.optQuick.TabStop = true;
             this.optQuick.Text = "Quick Sort";
@@ -268,11 +289,11 @@
             // optBubble
             // 
             this.optBubble.AutoSize = true;
-            this.optBubble.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.optBubble.Font = new System.Drawing.Font("Franklin Gothic Medium", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.optBubble.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.optBubble.Location = new System.Drawing.Point(30, 41);
+            this.optBubble.Location = new System.Drawing.Point(27, 41);
             this.optBubble.Name = "optBubble";
-            this.optBubble.Size = new System.Drawing.Size(93, 21);
+            this.optBubble.Size = new System.Drawing.Size(106, 24);
             this.optBubble.TabIndex = 8;
             this.optBubble.TabStop = true;
             this.optBubble.Text = "Bubble Sort";
@@ -280,12 +301,12 @@
             // 
             // gbElementos
             // 
+            this.gbElementos.Controls.Add(this.numericUpDown1);
             this.gbElementos.Controls.Add(this.btnGenerar);
-            this.gbElementos.Controls.Add(this.txtVector);
             this.gbElementos.Controls.Add(this.lblLongitud);
             this.gbElementos.Font = new System.Drawing.Font("Franklin Gothic Medium", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbElementos.ForeColor = System.Drawing.Color.SteelBlue;
-            this.gbElementos.Location = new System.Drawing.Point(20, 45);
+            this.gbElementos.Location = new System.Drawing.Point(20, 27);
             this.gbElementos.Name = "gbElementos";
             this.gbElementos.Size = new System.Drawing.Size(346, 126);
             this.gbElementos.TabIndex = 16;
@@ -297,7 +318,7 @@
             this.btnGenerar.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.btnGenerar.Font = new System.Drawing.Font("Franklin Gothic Medium", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGenerar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnGenerar.Location = new System.Drawing.Point(227, 50);
+            this.btnGenerar.Location = new System.Drawing.Point(223, 45);
             this.btnGenerar.Name = "btnGenerar";
             this.btnGenerar.Size = new System.Drawing.Size(84, 33);
             this.btnGenerar.TabIndex = 3;
@@ -305,22 +326,14 @@
             this.btnGenerar.UseVisualStyleBackColor = false;
             this.btnGenerar.Click += new System.EventHandler(this.btnGenerar_Click);
             // 
-            // txtVector
-            // 
-            this.txtVector.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtVector.Location = new System.Drawing.Point(16, 70);
-            this.txtVector.Name = "txtVector";
-            this.txtVector.Size = new System.Drawing.Size(152, 22);
-            this.txtVector.TabIndex = 3;
-            // 
             // lblLongitud
             // 
             this.lblLongitud.AutoSize = true;
-            this.lblLongitud.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLongitud.Font = new System.Drawing.Font("Franklin Gothic Medium", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLongitud.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblLongitud.Location = new System.Drawing.Point(13, 50);
+            this.lblLongitud.Location = new System.Drawing.Point(18, 42);
             this.lblLongitud.Name = "lblLongitud";
-            this.lblLongitud.Size = new System.Drawing.Size(111, 17);
+            this.lblLongitud.Size = new System.Drawing.Size(130, 20);
             this.lblLongitud.TabIndex = 3;
             this.lblLongitud.Text = "Longitud de Vector";
             // 
@@ -330,13 +343,14 @@
             this.grDesordenado.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.grDesordenado.Legends.Add(legend1);
-            this.grDesordenado.Location = new System.Drawing.Point(1045, 45);
+            this.grDesordenado.Location = new System.Drawing.Point(1027, 50);
             this.grDesordenado.Name = "grDesordenado";
             series1.ChartArea = "ChartArea1";
+            series1.Color = System.Drawing.Color.SteelBlue;
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.grDesordenado.Series.Add(series1);
-            this.grDesordenado.Size = new System.Drawing.Size(547, 247);
+            this.grDesordenado.Size = new System.Drawing.Size(568, 247);
             this.grDesordenado.TabIndex = 22;
             this.grDesordenado.Text = "Elementos";
             // 
@@ -346,22 +360,100 @@
             this.grOrdenado.ChartAreas.Add(chartArea2);
             legend2.Name = "Legend1";
             this.grOrdenado.Legends.Add(legend2);
-            this.grOrdenado.Location = new System.Drawing.Point(1045, 330);
+            this.grOrdenado.Location = new System.Drawing.Point(1027, 342);
             this.grOrdenado.Name = "grOrdenado";
             series2.ChartArea = "ChartArea1";
+            series2.Color = System.Drawing.Color.SteelBlue;
             series2.Legend = "Legend1";
             series2.Name = "Series1";
             this.grOrdenado.Series.Add(series2);
-            this.grOrdenado.Size = new System.Drawing.Size(547, 234);
+            this.grOrdenado.Size = new System.Drawing.Size(568, 248);
             this.grOrdenado.TabIndex = 23;
             this.grOrdenado.Text = "chart2";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.lblGraficos);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.btnLimpiarGraficos);
+            this.groupBox1.Controls.Add(this.btnLimpiarGrilla);
+            this.groupBox1.Font = new System.Drawing.Font("Franklin Gothic Medium", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.ForeColor = System.Drawing.Color.SteelBlue;
+            this.groupBox1.Location = new System.Drawing.Point(20, 468);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(346, 122);
+            this.groupBox1.TabIndex = 26;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Limpiar";
+            // 
+            // lblGraficos
+            // 
+            this.lblGraficos.AutoSize = true;
+            this.lblGraficos.Font = new System.Drawing.Font("Franklin Gothic Medium", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGraficos.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblGraficos.Location = new System.Drawing.Point(22, 71);
+            this.lblGraficos.Name = "lblGraficos";
+            this.lblGraficos.Size = new System.Drawing.Size(63, 20);
+            this.lblGraficos.TabIndex = 27;
+            this.lblGraficos.Text = "Graficos";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Franklin Gothic Medium", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label1.Location = new System.Drawing.Point(22, 39);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(44, 20);
+            this.label1.TabIndex = 26;
+            this.label1.Text = "Grilla";
+            // 
+            // btnLimpiarGraficos
+            // 
+            this.btnLimpiarGraficos.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.btnLimpiarGraficos.Font = new System.Drawing.Font("Franklin Gothic Medium", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLimpiarGraficos.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnLimpiarGraficos.Location = new System.Drawing.Point(160, 68);
+            this.btnLimpiarGraficos.Name = "btnLimpiarGraficos";
+            this.btnLimpiarGraficos.Size = new System.Drawing.Size(88, 26);
+            this.btnLimpiarGraficos.TabIndex = 25;
+            this.btnLimpiarGraficos.Text = "Limpiar";
+            this.btnLimpiarGraficos.UseVisualStyleBackColor = false;
+            this.btnLimpiarGraficos.Click += new System.EventHandler(this.btnLimpiarGraficos_Click);
+            // 
+            // btnLimpiarGrilla
+            // 
+            this.btnLimpiarGrilla.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.btnLimpiarGrilla.Font = new System.Drawing.Font("Franklin Gothic Medium", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLimpiarGrilla.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnLimpiarGrilla.Location = new System.Drawing.Point(160, 34);
+            this.btnLimpiarGrilla.Name = "btnLimpiarGrilla";
+            this.btnLimpiarGrilla.Size = new System.Drawing.Size(88, 26);
+            this.btnLimpiarGrilla.TabIndex = 24;
+            this.btnLimpiarGrilla.Text = "Limpiar";
+            this.btnLimpiarGrilla.UseVisualStyleBackColor = false;
+            this.btnLimpiarGrilla.Click += new System.EventHandler(this.btnLimpiarGrilla_Click);
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Font = new System.Drawing.Font("Franklin Gothic Medium", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numericUpDown1.Location = new System.Drawing.Point(15, 65);
+            this.numericUpDown1.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(146, 25);
+            this.numericUpDown1.TabIndex = 4;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1623, 597);
+            this.ClientSize = new System.Drawing.Size(1623, 621);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.grOrdenado);
             this.Controls.Add(this.grDesordenado);
             this.Controls.Add(this.lblGraficoOrdenado);
@@ -382,6 +474,9 @@
             this.gbElementos.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grDesordenado)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grOrdenado)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -404,7 +499,6 @@
         private System.Windows.Forms.RadioButton optBubble;
         private System.Windows.Forms.GroupBox gbElementos;
         private System.Windows.Forms.Button btnGenerar;
-        private System.Windows.Forms.TextBox txtVector;
         private System.Windows.Forms.Label lblLongitud;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn Iteraciones1;
@@ -412,6 +506,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Elementos;
         private System.Windows.Forms.DataVisualization.Charting.Chart grDesordenado;
         private System.Windows.Forms.DataVisualization.Charting.Chart grOrdenado;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label lblGraficos;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnLimpiarGraficos;
+        private System.Windows.Forms.Button btnLimpiarGrilla;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
     }
 }
 
