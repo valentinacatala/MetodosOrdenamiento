@@ -52,7 +52,7 @@ namespace MetodosOrdenamiento
             }
             else
             {
-                MessageBox.Show("Ingresar un numero de elementos", "Error");
+                MessageBox.Show("Ingresar un numero de elementos positivos", "Error");
             }
         }
 
